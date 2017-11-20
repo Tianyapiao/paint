@@ -1,0 +1,31 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion "$COMPILE_SDK_VERSION".toInteger()
+    buildToolsVersion "$BUILD_TOOL_VERSION"
+    defaultConfig {
+        applicationId "com.lht.paintviewdemo"
+        minSdkVersion "$MIN_SDK_VERSION".toInteger()
+        targetSdkVersion "$COMPILE_SDK_VERSION".toInteger()
+        versionCode 1
+        versionName "$APP_VERSION"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:appcompat-v7:$SUPPORT_APPCOMPAT_VERSION"
+    testCompile 'junit:junit:4.12'
+    compile project(':library')
+    compile "com.readystatesoftware.systembartint:systembartint:$SYSTEMBARTINT_VERSION"
+}
